@@ -1,0 +1,339 @@
+% STEP 1: Choose language, oneside or twoside
+\documentclass[english,twoside,openright]{HYgradu}
+
+%\usepackage[utf8]{inputenc} % For UTF8 support. Use UTF8 when saving your file.
+\usepackage{lmodern} % Font package
+\usepackage{textcomp} % Package for special symbols
+\usepackage[pdftex]{color, graphicx} % For pdf output and jpg/png graphics
+\usepackage[pdftex, plainpages=false]{hyperref} % For hyperlinks and pdf metadata
+\usepackage{fancyhdr} % For nicer page headers
+\usepackage{tikz} % For making vector graphics (hard to learn but powerful)
+%\usepackage{wrapfig} % For nice text-wrapping figures (use at own discretion)
+\usepackage{amsmath, amssymb} % For better math
+%\usepackage[square]{natbib} % For bibliography
+\usepackage[footnotesize,bf]{caption} % For more control over figure captions
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage[titletoc]{appendix}
+
+\onehalfspacing %line spacing
+%\singlespacing
+%\doublespacing
+
+%\fussy 
+\sloppy % sloppy and fussy commands can be used to avoid overlong text lines
+
+% STEP 2:
+% Set up all the information for the title page and the abstract form.
+% Replace parameters with your information.
+\title{Master's thesis template}
+\author{Matias Nurmi}
+\date{\today}
+\level{Master's thesis}
+\subject{Study track}
+\faculty{Faculty of Science}
+\programme{Degree Programme in Materials Research}
+\department{Department of Physics}
+\address{PL 64 (Gustaf Hällströmin katu 2a)\\00014 University of Helsinki}
+\prof{professor/docent/etc Testi}
+\censors{examiner Testi}{examiner Arvostelija}{}
+\keywords{Your keywords here, MATRES, Master's thesis}
+\depositeplace{}
+\additionalinformation{}
+\classification{}
+
+% if you want to quote someone special. You can comment this line and there will be nothing on the document.
+%\quoting{Bachelor's degrees make pretty good placemats if you get them laminated.}{Jeph Jacques} 
+
+
+% OPTIONAL STEP: Set up properties and metadata for the pdf file that pdfLaTeX makes.
+% But you don't really need to do this unless you want to.
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar first?
+    unicode=true,           % to show non-Latin characters in Acrobatâ€™s bookmarks
+    pdftoolbar=true,        % show Acrobatâ€™s toolbar?
+    pdfmenubar=true,        % show Acrobatâ€™s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={},            % title
+    pdfauthor={},           % author
+    pdfsubject={},          % subject of the document
+    pdfcreator={},          % creator of the document
+    pdfproducer={pdfLaTeX}, % producer of the document
+    pdfkeywords={something} {something else}, % list of keywords for
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=black,        % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+\begin{document}
+
+% Generate title page.
+\maketitle
+
+% STEP 3:
+% Write your abstract (of course you really do this last).
+% You can make several abstract pages (if you want it in different languages),
+% but you should also then redefine some of the above parameters in the proper
+% language as well, in between the abstract definitions.
+
+\begin{abstract}
+Write a short, no more than 250 words summary of you work: what have you studied, what kind of methods have you used, what kind of results did you get and what kind of conclusions can be drawn on the basis of them. 
+\end{abstract}
+
+% Place ToC
+\mytableofcontents
+
+\mynomenclature
+
+% -----------------------------------------------------------------------------------
+% STEP 4: Write the thesis.
+% Your actual text starts here. You shouldn't mess with the code above the line except to change the parameters.
+% Removing the abstract and ToC commands will mess up stuff.
+
+\chapter{Introduction}
+
+This thesis template uses its own class \texttt{HYgradu.cls}, which defines the style of the document and automatically creates a cover page and an abstract page according to the given parameters. It is possible for the student to change the document class when desired, but it is recommended that the general layout is followed especially for the cover and abstract pages. 
+
+\TeX-file begins with a list of items that should be filled, such as author, title of the thesis, etc\footnote{Number of pages is counted automatically beginning from the first chapter.}. \LaTeX creates the document based on these items. 
+
+If you have more than 1 supervisor, you'll have to edit the \texttt{HYgrady.cls} on line 180. First command (default) is for one supervisor and 2nd command is for two supervisors:
+\begin{verbatim}
+\newcommand{\prof}[1]{\gdef\@prof{#1}}
+\newcommand{\prof}[2]{\gdef\@prof{#1\\&#2}}
+\end{verbatim}
+The amount of examiners is by default 3 (line 182).
+\\\\
+Any corrections or suggestions for improvement to this template may be sent to Etunimi Sukunimi \href{mailto:etunimi.sukunimi@helsinki.fi}{etunimi.sukunimi@helsinki.fi}  
+
+\section{Compiling the document}
+\label{sec:compile}
+
+Master's thesis should be compiled into a pdf-file by using \emph{Makefile}, because this automatically generates bibliography and a possible list of symbols.\footnote{Creating these lists requires compiling the document also with \textsc{B\kern-0.1emi\kern-0.017emb}\kern-0.15em\TeX- and makeindex-tools.}. 
+
+File \texttt{Makefile} defines the names of \TeX-file ja bibliography:
+\begin{verbatim}
+name=MATRES_MSc_thesis_template
+bibfile=bibliography.bib
+...
+\end{verbatim}
+You can compile this template by running \texttt{make} on the command line, in which case this template is compiled several times so that all document lists have been updated.
+
+Often the pdf-file is updated only after minor changes if no new references or symbols have been created. A large \TeX-file containing multiple images is slow to compile with \texttt{make}-command. 
+In this case you can use command \texttt{make simple}, which compiles the document only once instead of three times. 
+
+If the language or reference style is changed, you must remove the help files (\texttt{.aux}, \texttt{.blg} etc.). You can do this automatically by running \texttt{make clean}.
+
+\chapter{Layout}
+
+\section{Language}
+
+The document language can be \texttt{english}, \texttt{finnish} or \texttt{swedish}. The document subtitles change automatically according to the chosen language\footnote{Remember to clean the help files (chapter \ref{sec:compile}).}. 
+ 
+\section{Twosided or no?}
+ 
+Printed master's thesis should be twosided, in which case the document settings are following:
+\begin{verbatim}
+\documentclass[english,twoside,openright]{HYgradu}
+\end{verbatim}
+A good practise in book making is to begin every chapter from an odd page (i.e. right page) even if the last chapter ended to an odd page. This happens automatically when using \texttt{twoside}. In paperback-binding papers printed on paper, the so called neck-margin is 0.5 cm wider because bookbinding (especially with staples) takes away a bit of the margin.
+The thesis can also be compiled using \texttt{oneside}. This removes all blank pages making it easier to read on displays. Only in the digital version both margins are equally wide.
+
+\section{Font size and line spacing}
+
+The default fontsize of the document is \texttt{12pt}, but you can change it to \texttt{10pt} or \texttt{11pt}.
+
+Line spacing can be changed with \texttt{\textbackslash onehalfspacing}, \texttt{\textbackslash singlespacing} and \texttt{\textbackslash doublespacing}.
+
+
+\chapter{Formulas and symbols}
+
+The Fourier transform $\hat{g} (f)$ of a continuous function $g(x)$ is
+\begin{equation}
+\label{eq: Fourier}
+\hat{g}(f) = \int_{-\infty}^{\infty}g(t)e^{-i 2 \pi t f} dt,
+\end{equation}
+where $\hat{g}(f)$ is signal strenght function for frequencies $f$.
+
+Symbols representing quantities can be added straight to the symbol list using
+\begin{verbatim}
+\nomenclature{<symbol>}{<explanation> \nomunit{<potential unit>}}
+\end{verbatim}
+For example frequency symbol is added to symbol list with
+\begin{verbatim}
+\nomenclature{$f$}{Frequency \nomunit{Hz}}
+\end{verbatim}
+Computer automatically arranges the symbols in alphabetical order, with uppercase before lowercase letters and Greek letters before Latin. 
+
+\begin{center}
+\framebox[13.5cm]{
+\begin{minipage}{13cm}
+\textcolor{red}{\bf Nb!} It is important that symbols in formulas are in  (\emph{italics}) but units and symbols are written in vertical letters (roman).
+\end{minipage}
+}
+\end{center}
+
+\chapter{Images and tables}
+
+\section{Images}
+
+It is recommended to use a PostScript format for publishing images, for example, .pdf and .eps formats are recommended as these files contain information on fonts, formatting and resolution.
+
+\begin{figure}[h!] 
+% [h!] tells the program to place the image at this point of text.
+% Similarly, [t] places the image at the top of the page, [b] places the image at the bottom of the page.
+\centering % places the image at the center
+\includegraphics[width=0.3\textwidth]{sinetti.png}
+\caption{Faculty of Science seal, here to help display the image layout}
+\label{fig:sinetti}
+% There are several packages available on the web to help you position your image or caption
+\end{figure}
+
+\section{Tables}
+
+When presenting the results, you should use not only text but also images and often tables. The caption text will appear below the table, while the table text will appear above the table. 
+
+The text in images and tables is in a smaller font and the title is in bold.
+
+\begin{table*}
+	\centering
+	\caption{Important results}
+	\label{tab:symbols}
+	\begin{tabular}{l||l c r} % You can put as many vertical lines as you like, and they are not mandatory for the table 
+		% l-entry (left) places the column cell values to the left
+		% c-entry (center) places the column cell values to the center
+		% r-entry (right) places the column cell values to the right
+		Test & 1 & 2 & 3 \\ 
+		\hline \hline % \hline creates a horizontal line between the lines. Multiple \hline creates multiple lines between those lines.
+		$A$ & 2.5 & 4.7 & -11 \\
+		$B$ & 8.0 & -3.7 & 12.6 \\
+		$A+B$ & 10.5 & 1.0 & 1.6 \\
+		\hline
+		%
+	\end{tabular}
+\end{table*}
+
+\chapter{References}
+
+The document's reference styles are "numeric references" \texttt{unsrt}, where references are listed in the order of reference, and the "author name and year" style \texttt{apalike}, where references are listed in alphabetical order of the author's last name . Ask your supervisor which reference style he or she recommends you use.
+
+References uses a separate .bib-file. In this document it is \texttt{bibliography.bib} and it looks like this:
+\begin{verbatim}
+@article{einstein,
+author =       "Albert Einstein",
+title =        "{Zur Elektrodynamik bewegter K{\"o}rper}. ({German})
+[{On} the electrodynamics of moving bodies]",
+journal =      "Annalen der Physik",
+volume =       "322",
+number =       "10",
+pages =        "891--921",
+year =         "1905",
+DOI =          "http://dx.doi.org/10.1002/andp.19053221004"
+}
+
+@book{latexcompanion,
+author    = "Michel Goossens and Frank Mittelbach and Alexander Samarin",
+title     = "The \LaTeX\ Companion",
+year      = "1993",
+publisher = "Addison-Wesley",
+address   = "Reading, Massachusetts"
+}
+
+@misc{knuthwebsite,
+author    = "Donald Knuth",
+title     = "Knuth: Computers and Typesetting",
+url       = "http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html"
+}
+\end{verbatim}
+
+The reference is made with command \texttt{\textbackslash cite\{einstein\}}. E.g. 
+\cite{einstein}, \cite{latexcompanion} and \cite{knuthwebsite}\footnote{Last reference is missing a year, because it's not defined in the .bib-file.}.
+
+\chapter{Structure of Master's thesis}
+
+As part of their advanced studies, Master's level students write a thesis of 30 credits in scope.
+
+Before embarking on the thesis project, or at its initial stages at the latest, you must draft a thesis plan, which will be discussed and approved by your degree programme. The plan must also indicate the supervisor(s) of the thesis.
+
+You can complete the thesis independently or in a group or a wider research project, provided that your independent input can be clearly demonstrated and easily assessed. You can also complete the thesis as a \href{https://guide.student.helsinki.fi/en/article/masters-thesis-commissions}{commission}. However, write your thesis independently. You can write the thesis as pair work with a fellow student only if your degree programme has separately decided to allow this. In such cases, the independent contribution of both students must be clearly demonstrable.
+
+\section{Introduction}
+
+The introduction briefly describes the background of the thesis, the reasons for selecting its topic. If the study is a part of a larger research project, the introduction also indicates the name and sponsors of the entire project  and  all  the  parties  involved. The section concludes with a description of the reasons for conducting the study.
+
+Avoid an excessively long  introduction. The recommended length is three to four paragraphs or one to two pages.
+
+\section{Text numbers}
+
+The structure of literature numbers depends on thesis content. Consider what is appropriate for your work.
+
+If the understanding of the thesis requires more theoretical knowledge than a physics student in the same phase of studies, but unfamiliar with the topic of thesis, has, the theoretical background should be described in it's own, separate chapter (Eg "Theory").
+
+The language used should be in proper written language, avoiding spoken expressions.  
+
+If your work contains measurements or data analysis, describe the methods and or data you have used first and then the results (in one or more chapters).
+
+In pure literature works, chapters "Methods and Measurements" or "Results" are not required. The structure of text chapters is chosen so that things can be presented in the most logical way possible.
+
+\section{Theory}
+%
+% Short examples using an equation and referencing.
+%
+
+The omega equation
+\begin{equation}
+\label{eq:omega}
+L(\omega)=F_V + F_T + F_V + F_Q + F_A
+\end{equation}
+allows assessing development from synoptic charts. The equation (\ref{eq:omega}) was not familiar to Einstein (\cite{einstein}), and neither \cite{latexcompanion} or \cite{knuthwebsite} address it. 
+\nomenclature{$L(\omega)$}{Omega \nomunit{unit}}
+
+\section{Materials and methods}
+
+
+\section{Results}
+
+Remember that caption texts appears below images and above tables. 
+
+\section{Discussion}
+
+\section{Conclusions}
+
+Review and cast a brief, summarised look at the objectives, methods and results of your thesis. Reflect the meaning of results and the possible need for further studies. 
+
+\section{Acknowledgements}
+
+
+\begin{appendices}
+\myappendixtitle
+
+\chapter{Appendices}
+
+In appendices, you can present your code for example:
+
+\begin{verbatim}
+#!/bin/bash          
+text="Hello World!"
+echo $text
+\end{verbatim}
+
+\end{appendices}
+
+% STEP 5:
+% Uncomment the following lines and set your .bib file and desired bibliography style
+% to make a bibliography with BibTeX.
+% Alternatively you can use the thebibliography environment if you want to add all
+% references by hand.
+
+\cleardoublepage %fixes the position of bibliography in bookmarks
+\phantomsection
+
+\addcontentsline{toc}{chapter}{\bibname} % This lines adds the bibliography to the ToC
+%\bibliographystyle{unsrt} % numbering 
+\bibliographystyle{apalike} % name, year
+\bibliography{bibliography} % name of the file 'bibliography.bib'
+
+\end{document}

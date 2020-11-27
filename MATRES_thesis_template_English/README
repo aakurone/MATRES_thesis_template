@@ -1,0 +1,6 @@
+
+To compile the tex and bib files:
+make
+
+Delete everything except the source files:
+make clean

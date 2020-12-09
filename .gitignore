@@ -1,1 +1,12 @@
 README.git
+*.aux
+*.blg
+*.out
+*.bbl
+*.log
+*.nlo
+*.nls
+*.toc
+*.ilg
+MATRES_thesis_template_English/MATRES_MSc_thesis_template.pdf
+

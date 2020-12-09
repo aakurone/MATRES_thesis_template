@@ -30,11 +30,13 @@
 \author{Matias Nurmi}
 \date{\today}
 \level{Master's thesis}
-\subject{Study track}
+% \programme{Degree Programme in Materials Research}
+\programme{Master's Programme in Materials Research}
+\subject{Experimental Materials Physics}
 \faculty{Faculty of Science}
-\programme{Degree Programme in Materials Research}
-\department{Department of Physics}
-\address{PL 64 (Gustaf Hällströmin katu 2a)\\00014 University of Helsinki}
+%\department{Department of Physics}
+%\address{PL 64 (Gustaf Hällströmin katu 2a)\\00014 University of Helsinki}
+\address{}
 \prof{professor/docent/etc Testi}
 \censors{examiner Testi}{examiner Arvostelija}{}
 \keywords{Your keywords here, MATRES, Master's thesis}
@@ -100,14 +102,15 @@ This thesis template uses its own class \texttt{HYgradu.cls}, which defines the 
 
 \TeX-file begins with a list of items that should be filled, such as author, title of the thesis, etc\footnote{Number of pages is counted automatically beginning from the first chapter.}. \LaTeX creates the document based on these items. 
 
-If you have more than 1 supervisor, you'll have to edit the \texttt{HYgrady.cls} on line 180. First command (default) is for one supervisor and 2nd command is for two supervisors:
+If you have more than 1 supervisor, you'll have to edit the \texttt{HYgrady.cls} near line 180. First command (default) is for one supervisor and 2nd command is for two supervisors:
 \begin{verbatim}
 \newcommand{\prof}[1]{\gdef\@prof{#1}}
 \newcommand{\prof}[2]{\gdef\@prof{#1\\&#2}}
 \end{verbatim}
 The amount of examiners is by default 3 (line 182).
 \\\\
-Any corrections or suggestions for improvement to this template may be sent to Etunimi Sukunimi \href{mailto:etunimi.sukunimi@helsinki.fi}{etunimi.sukunimi@helsinki.fi}  
+Any corrections or suggestions for improvement to this template may be
+sent to Antti Kuronen (\href{mailto:antti.kuronen@helsinki.fi}{antti.kuronen@helsinki.fi}).
 
 \section{Compiling the document}
 \label{sec:compile}

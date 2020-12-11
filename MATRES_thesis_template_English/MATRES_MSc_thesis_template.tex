@@ -32,12 +32,16 @@
 % Fill in the desired information on the title page, the second page
 % and the abstract form.
 \title{Master's thesis template}
-\author{Matias Nurmi}
+\author{Author Name}
 \date{\today}
-\subject{Study Track of Experimental Materials Physics}
-\prof{professor/docent/etc Testi}
-\censors{examiner Testi}{examiner Arvostelija}{}
+\subject{Study Track: Experimental Materials Physics}
 \keywords{Your keywords here, MATRES, Master's thesis}
+% The following two commands need two arguments. If there are only
+% one supervisor or examiner just give an empty argument: '{}'
+% If you want more than 2 edit the class file 'HYgradu.cls'
+% Search for string 'Edit here if you need more than two supervisors or examiners'
+\prof{docent Supervisor1}{professor Supervisor2}
+\censors{professor Examiner1}{docent Examiner2}
 % ---------------------------------------------------------------------------
 
 % --- Do not change these ---
@@ -120,25 +124,25 @@ possible for the student to change the document class when desired,
 but it is strongly recommended that the general layout is followed
 especially for the cover and abstract pages.
 
-\TeX\ file begins with a list of items that should be filled, such as
-author, title of the thesis, etc\footnote{Number of pages is counted
-  automatically beginning from the first chapter.}. \LaTeX\ creates the
-document based on these items. In the \TeX\ file these items are marked
-with comments like
+\TeX\ file begins with a list of items that should be filled in, such
+as author, title of the thesis, etc\footnote{Number of pages is
+  counted automatically beginning from the first chapter.}. \LaTeX\
+creates the document based on these items. In the \TeX\ file these
+items are marked with comments like
 \begin{verbatim}
 % --------------------------------------...
 % STEP 1: ...
 \end{verbatim}
 
-If you have more than 1 supervisor, you'll have to edit the
-\texttt{HYgradu.cls} near line 180. First command (default) is for one
-supervisor and 2nd command is for two supervisors:
+If you have more than two supervisor or examiners, you'll have to modify
+definitions of commands \verb|\prof| and \verb|\censors| in file
+\texttt{HYgradu.cls}:
 \begin{verbatim}
-\newcommand{\prof}[1]{\gdef\@prof{#1}}
+% Edit here if you need more than two supervisors or examiners
 \newcommand{\prof}[2]{\gdef\@prof{#1\\&#2}}
+\newcommand{\censors}[2]{\gdef\@censor{#1\\&#2}}
 \end{verbatim}
-The amount of examiners is by default 3 (line 182).
-\\\\
+
 Any corrections or suggestions for improvement to this template may be
 sent to Antti Kuronen
 (\href{mailto:antti.kuronen@helsinki.fi}{antti.kuronen@helsinki.fi}).
@@ -181,7 +185,8 @@ message, give this command first and then try to compile the document.
 The document language can be \texttt{english}, \texttt{finnish} or
 \texttt{swedish}. The document subtitles change automatically
 according to the chosen language\footnote{Remember to clean the help
-  files (chapter \ref{sec:compile}).}.
+  files (chapter \ref{sec:compile}).}. Some parts of the document you
+have to change yourself after changing the language.
  
 \section{Twosided or no?}
  

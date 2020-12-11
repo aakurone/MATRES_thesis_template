@@ -169,7 +169,7 @@
   \@ifundefined{r@lastpage}{0}{\pageref{lastpage}}%
 }
 \renewcommand{\and}{%
-  \\ % Rivinvaihto.
+  \\ % Line break
   \hspace{1em}%
 }
 
@@ -177,10 +177,12 @@
   \def\today{\number\day.\number\month.\number\year}}
 \newcommand{\level}[1]{\gdef\@level{#1}}
 \level{}
-\newcommand{\prof}[1]{\gdef\@prof{#1}}
-\newcommand{\address}[1]{\gdef\@address{#1}}
-\newcommand{\censors}[3]{\gdef\@censor{#1\\&#2\\&#3}}
+% Edit here if you need more than two supervisors or examiners
+\newcommand{\prof}[2]{\gdef\@prof{#1\\&#2}}
+\newcommand{\censors}[2]{\gdef\@censor{#1\\&#2}}
+
 \newcommand{\quoting}[2]{\gdef\@quoting{\begin{center}\emph{#1}\\ --- #2\end{center}}}
+\newcommand{\address}[1]{\gdef\@address{#1}}
 
 
 
@@ -384,7 +386,7 @@
 \def\division{\char'057}
 
 \newcommand{\faculty}[1]{\gdef\@faculty{#1}}
-\newcommand{\programme}[1]{\gdef\@programme{#1}}
+\newcommand{\programme}[1]{\gdef\@programme{{\bf #1}}}
 \newcommand{\department}[1]{\gdef\@department{#1}}
 \newcommand{\subject}[1]{\gdef\@subject{#1}}
 \newcommand{\depositeplace}[1]{\gdef\@depositeplace{#1}}
